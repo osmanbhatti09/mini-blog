@@ -1,0 +1,30 @@
+{% extends 'blog/base.html' %}
+{% load static %}
+from django import forms
+from django.contrib.auth.models import User
+{% block content %}
+<h2 class="text-center display-3 my-3">Sign Up Page</h2>
+    <div class="col-sm-10">
+     {% block msg %}
+     {% if message %}
+     {% for message in messages %}
+     <div {% if message.tags %} class="alert alert-{{message.tags}} {% endif %}"> {{message}} </div>
+     {% endfor %}
+     {% endif %}
+     {% endblock msg %}
+    <form action="" method="post" novalidate>
+        {% csrf_token %}
+        {% for fm in form %}
+        <div class="group-form">
+            <p class="my-2">{{fm.label_tag}} {{fm}}</p> <span class="text-warning">{{form.errors|striptags}}</span>
+        </div>
+        {% endfor %}
+        <input type="submit" class="btn btn-primary" value="Submit">      
+        {% if form.non.field_error %}
+        {% for error in non.field_error %}
+        <p style='color:red'>{{error|escape}}</p>
+        {% endfor %}
+        {% endif %} 
+    </form>
+    </div>
+{% endblock content %}

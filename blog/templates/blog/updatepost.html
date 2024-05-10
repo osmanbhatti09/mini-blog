@@ -1,0 +1,23 @@
+{% extends 'blog/base.html' %}
+{% static load %}
+    <h2>{{post.title}} </h2>
+{% block msg %} 
+{% for message in message %}
+{% if message.tags %} {{message.tags}} 
+
+{% endblock msg %}
+
+
+{% block content %}
+<h2 class="text-center my-4">Dashboard/ Update Post</h2>
+<form action="" method="post">
+    <div class="group-form">    
+    {% for fm in form %}
+    {{fm.label_tag}} {{fm}} {{fm.errors}} 
+    {% endfor %}
+    <input type="submit" value="Update" class="btn btn-success">
+    <a href="{% url 'dashboard' %}" class="btn btn-warning">Back Button</a>
+    </div>
+
+</form>
+{% endblock content %}

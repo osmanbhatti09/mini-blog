@@ -1,0 +1,20 @@
+{% extends 'blog/base.html' %}
+{% load static %}
+{% block content %}
+<div class="col sm-12">
+<h2 class="text-center my-4">Dashboard/ Add Post</h2>
+{% block msg %}
+{% for message in messages %}
+<div {% if message.tags %} class="alert alert-{{message.tags}}" {% endif %}>{{message}}</div> 
+{% endfor %}
+{% endblock msg %}
+<form action="" method="post" novalidate>
+{% csrf_token %}
+{% for fm in form %}
+{{fm.label_tag}} {{fm}} {{fm.errors}}
+{% endfor %}
+<input type="submit" class="btn btn-success mx-2 my-3" value="Add">
+<a href="{% url 'dashboard' %}" type="button" class="btn btn-secondary">Back Page</a>
+</form>
+</div>
+{% endblock content %}
